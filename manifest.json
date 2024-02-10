@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "NCKU Verify Code Extension",
+    "version": "1.0",
+    "permissions": [
+        "activeTab",
+        "http://*.ncku.edu.tw/*",
+        "https://*.ncku.edu.tw/*"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://*.ncku.edu.tw/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "browser_action": {
+        
+    }
+}
