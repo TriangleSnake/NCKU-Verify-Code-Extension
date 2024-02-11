@@ -1,4 +1,4 @@
 flask
 numpy
-opencv-python
+opencv-python-headless
 flask_cors

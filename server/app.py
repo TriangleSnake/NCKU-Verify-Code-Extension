@@ -40,8 +40,10 @@ def img2txt(image):
     return str(min_lst.index(min_val))
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST','HEAD'])
 def api():
+    if request.method == 'HEAD':
+        return make_response('ok')
     data = request.get_json()
     if 'image' not in data:
         return jsonify({'error': 'Missing image data'}), 400
@@ -56,4 +58,4 @@ def api():
     return make_response(verify_code)
 
 if __name__ == '__main__':
-    app.run(port=5001,host="127.0.0.1")
+    app.run(port=5001,host="0.0.0.0")
