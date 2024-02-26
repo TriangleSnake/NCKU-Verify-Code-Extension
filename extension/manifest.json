@@ -1,9 +1,8 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "NCKU Verify Code Extension",
     "version": "1.0",
     "permissions": [
-        "activeTab",
         "http://*.ncku.edu.tw/*",
         "https://*.ncku.edu.tw/*"
     ],
