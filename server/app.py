@@ -43,7 +43,6 @@ def img2txt(image):
 def api():
     if request.method == 'HEAD':
         response = make_response('ok')
-        response.headers['Access-Control-Allow-Origin']='https://*.ncku.edu.tw'
         return response
     data = request.get_json()
     if 'image' not in data:
@@ -59,7 +58,6 @@ def api():
     for i in numbers:
         verify_code += img2txt(i)
     response = make_response(verify_code)
-    response.headers['Access-Control-Allow-Origin']='https://*.ncku.edu.tw'
     return response
 
 if __name__ == '__main__':
