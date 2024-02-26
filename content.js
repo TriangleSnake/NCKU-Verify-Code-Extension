@@ -12,8 +12,7 @@ function getImageBase64(imgElement, callback) {
 }
 
 function sendCaptchaToServer(base64Image) {
-    const url = 'www.trianglesnake.com'
-    const apiURL = 'https://'+ url +'/api/captcha';
+    const apiURL = 'https://api.trianglesnake.com/captcha';
     fetch(apiURL, {
         method: 'POST',
         headers: {
