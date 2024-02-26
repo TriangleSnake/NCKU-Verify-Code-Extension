@@ -4,7 +4,6 @@ import base64
 import numpy as np
 import cv2
 app = Flask(__name__)
-CORS(app)
 def binaziation(image):
     ret, binary = cv2.threshold(image, 30, 255, cv2.THRESH_BINARY)
     return binary
@@ -43,19 +42,25 @@ def img2txt(image):
 @app.route('/', methods=['POST','HEAD'])
 def api():
     if request.method == 'HEAD':
-        return make_response('ok')
+        response = make_response('ok')
+        response.headers['Access-Control-Allow-Origin']='https://*.ncku.edu.tw'
+        return response
     data = request.get_json()
     if 'image' not in data:
         return jsonify({'error': 'Missing image data'}), 400
     base64_image = data['image']
     if ',' in base64_image:
         base64_image = base64_image.split(',')[1]
+    else :
+        return jsonify({'error': 'base6 decode error'}), 400
     image = decode_image_from_base64(base64_image)
     numbers = split_image(image)
     verify_code = ''
     for i in numbers:
         verify_code += img2txt(i)
-    return make_response(verify_code)
+    response = make_response(verify_code)
+    response.headers['Access-Control-Allow-Origin']='https://*.ncku.edu.tw'
+    return response
 
 if __name__ == '__main__':
     app.run(port=5001,host="0.0.0.0")
