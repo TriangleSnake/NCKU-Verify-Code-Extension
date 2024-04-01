@@ -4,7 +4,9 @@ import base64
 import numpy as np
 import cv2
 app = Flask(__name__)
+CORS(app)
 def binaziation(image):
+
     ret, binary = cv2.threshold(image, 30, 255, cv2.THRESH_BINARY)
     return binary
 
