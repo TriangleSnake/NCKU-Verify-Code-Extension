@@ -1,3 +1,4 @@
+from pygevent import pywsgi
 from flask import Flask, request,make_response,jsonify
 from flask_cors import CORS
 import base64
@@ -63,4 +64,5 @@ def api():
     return response
 
 if __name__ == '__main__':
-    app.run(port=5001,host="0.0.0.0")
+    server = pywsgi.WSGIServer(("0.0.0.0",5001),app)
+    server.serve_forever()
