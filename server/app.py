@@ -42,7 +42,7 @@ def img2txt(image):
     return str(min_lst.index(min_val))
 
 
-@app.route('/', methods=['POST','HEAD'])
+@app.route('/captcha', methods=['POST','HEAD'])
 def api():
     if request.method == 'HEAD':
         response = make_response('ok')
