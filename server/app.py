@@ -33,13 +33,13 @@ def split_image_m(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
     tmp_img = np.copy(image)
     i = 0
     while i < len(image[0]) and len(per_num) < 4:
-        cv2.imshow('image',cv2.resize(tmp_img,(600,150)))
-        cv2.waitKey(30)
+        #cv2.imshow('image',cv2.resize(tmp_img,(600,150)))
+        #cv2.waitKey(30)
         if np.sum(image[:,i] == 0) > 2:
             
             for j in range(len(image)):
-                cv2.imshow('image',cv2.resize(tmp_img,(600,150)))
-                cv2.waitKey(30)
+                #cv2.imshow('image',cv2.resize(tmp_img,(600,150)))
+                #cv2.waitKey(30)
                 sum_of_black = np.sum(image[j][i:i+8]==0)
                 if sum_of_black > 2:
                     
@@ -131,7 +131,6 @@ def api():
 
 
 if __name__ == '__main__':
-    print("hello")
     server = pywsgi.WSGIServer(("0.0.0.0",5001),app)
     server.serve_forever()
 
