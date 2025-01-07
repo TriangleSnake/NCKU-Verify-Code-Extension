@@ -103,7 +103,7 @@ def api():
     
     verify_code = ''
     if request.args.get("moodle") == '1':
-        image = binaziation(image,150)
+        image = binaziation(image,200)
         image = image[1:-1,1:-1]
         numbers = split_image_m(image)
         for i in numbers:

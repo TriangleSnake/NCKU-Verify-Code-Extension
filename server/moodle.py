@@ -5,7 +5,9 @@ import cv2
 
 def binaziation(image:cv2.typing.MatLike)->cv2.typing.MatLike:
 
-    ret, binary = cv2.threshold(image, 150, 255, cv2.THRESH_BINARY)
+    ret, binary = cv2.threshold(image, 200, 255, cv2.THRESH_BINARY)
+    cv2.imshow('image',binary)
+    cv2.waitKey(0)
     return binary
 
 def num_cmp(image1:cv2.typing.MatLike,image2:cv2.typing.MatLike):
