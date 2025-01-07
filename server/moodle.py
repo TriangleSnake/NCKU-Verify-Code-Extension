@@ -54,10 +54,10 @@ def split_image(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
 
 def img2txt(image:cv2.typing.MatLike)->str:
     image = binaziation(image)
-    min_lst = []
-    min_lst = [num_cmp(image,NUM_IMG[i]) for i in range(10)]
-    min_val = min(min_lst)
-    return str(min_lst.index(min_val))
+    max_lst = []
+    max_lst = [cv2.matchTemplate(image,NUM_IMG[i],cv2.TM_CCOEFF_NORMED) for i in range(10)]
+    max_val = max(max_lst)
+    return str(max_lst.index(max_val))
 
 def remove_noise(image:cv2.typing.MatLike)->cv2.typing.MatLike:
     for i in range(1,len(image)-1):
