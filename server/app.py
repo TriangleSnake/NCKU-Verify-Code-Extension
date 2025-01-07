@@ -36,7 +36,7 @@ def split_image_m(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
                 sum_of_black = np.sum(image[j][i:i+8]==0)
                 if sum_of_black > 2:
                     
-                    per_num.append(image[j-1:j+10,i-1:i+8])
+                    per_num.append(image[j-1:j+11,i-1:i+9])
                     i+=8
                     tmp_img = np.copy(image)
                     break
