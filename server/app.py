@@ -36,7 +36,7 @@ def split_image_m(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
                 sum_of_black = np.sum(image[j][i:i+8]==0)
                 if sum_of_black > 2:
                     
-                    per_num.append(image[j:j+10,i:i+8])
+                    per_num.append(image[j-1:j+10,i-1:i+8])
                     i+=8
                     tmp_img = np.copy(image)
                     break
@@ -59,7 +59,7 @@ def img2txt_m(image:cv2.typing.MatLike)->str:
     
     image = remove_noise(image)
     max_lst = []
-    max_lst = [cv2.matchTemplate(image,NUM_IMG_MOODLE[i],cv2.TM_CCOEFF_NORMED) for i in range(10)]
+    max_lst = [cv2.minMaxLoc(cv2.matchTemplate(image,NUM_IMG_MOODLE[i],cv2.TM_CCOEFF_NORMED))[1] for i in range(10)]
     max_val = max(max_lst)
     return str(max_lst.index(max_val))
 

@@ -40,9 +40,10 @@ def split_image(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
                 sum_of_black = np.sum(image[j][i:i+8]==0)
                 if sum_of_black > 2:
                     
-                    per_num.append(image[j:j+10,i:i+8])
+                    per_num.append(image[j-1:j+10,i-1:i+8])
                     i+=8
                     tmp_img = np.copy(image)
+                    
                     break
                 else:
                     tmp_img[j] = np.full((len(image[0])),0)
@@ -50,12 +51,15 @@ def split_image(image:cv2.typing.MatLike)->list[cv2.typing.MatLike]:
             tmp_img[:,i] = np.full((len(image)),0)
         
         i+=1
+    #for i in per_num:
+        #cv2.imshow('image',cv2.resize(i,(80,100)))
+        #cv2.waitKey(0)
     return per_num
 
 def img2txt(image:cv2.typing.MatLike)->str:
     image = binaziation(image)
     max_lst = []
-    max_lst = [cv2.matchTemplate(image,NUM_IMG[i],cv2.TM_CCOEFF_NORMED) for i in range(10)]
+    max_lst = [cv2.minMaxLoc(cv2.matchTemplate(image,NUM_IMG[i],cv2.TM_CCORR))[1] for i in range(10)]
     max_val = max(max_lst)
     return str(max_lst.index(max_val))
 
